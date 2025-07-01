@@ -8,6 +8,7 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'jacoco'
 }
 
 repositories {
@@ -37,4 +38,21 @@ application {
 
 tasks.withType(JavaCompile){
 	options.encoding = 'UTF-8'
+}
+
+jacoco {
+    toolVersion = "0.8.10" 
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport 
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true 
+        html.required = true
+    }
 }
