@@ -33,12 +33,18 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
 
-    - name: Build with Gradle Wrapper
-      run: ./gradlew build
-    
-    # - name: Run tests with Gradle Wrapper
-    #   run: ./gradlew clean test jacocoTestReport
+    # Runs tests and generates the JaCoCo coverage report
+    - name: Run tests and generate coverage report
+      run: ./gradlew test jacocoTestReport
 
+    # Uploads the generated HTML report as a build artifact
+    - name: Upload coverage report
+      uses: actions/upload-artifact@v4
+      with:
+        name: jacoco-html-report # Name of the artifact
+        path: build/reports/jacoco/test/html # Path to the report directory
+
+    
 
 
     # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
