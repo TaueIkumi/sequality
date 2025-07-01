@@ -10,5 +10,20 @@ public class App {
 
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
+        
+        Calculate calculate = new Calculate();
+        
+        int sum = calculate.sum(2, 3);
+        double avg = calculate.average(2, 3);
+        System.out.println("Sum of 2 and 3 is " + sum + ". Average is " + avg + ".");
+        
+        int rangeSum = calculate.sumRange(1, 10);
+        double rangeAvg = calculate.averageRange(1, 10);
+        System.out.println("Sum of 1 to 10 is " + rangeSum + ". Average is " + rangeAvg + ".");
+        
+        int oddSum = calculate.sumOdd(1, 10);
+        int evenSum = calculate.sumEven(1, 10);
+        System.out.println("Sum of odd of 1 to 10 is " + oddSum + ".");
+        System.out.println("Sum of even of 1 to 10 is " + evenSum + ".");
     }
 }
